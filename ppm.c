@@ -4,8 +4,8 @@
 // Přeloženo: gcc 10.2.0
 // ...popis příkladu - poznámky, omezení, atd
 
-#include "../headers/error.h"
-#include "../headers/ppm.h"
+#include "error.h"
+#include "ppm.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

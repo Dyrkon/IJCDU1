@@ -4,9 +4,9 @@
 // Přeloženo: gcc 10.2.0
 // ...popis příkladu - poznámky, omezení, atd
 
-#include "../headers/error.h"
-#include "../headers/ppm.h"
-#include "../headers/bitset.h"
+#include "error.h"
+#include "ppm.h"
+#include "bitset.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,11 +15,11 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 2)
+    if (argc == 2)
     {
-        warning_msg("Musite zadat nazev souboru, ktery chcete dekodovat: ./stag-decode 'nazev obrazku'\n");
-        return 0;
-    }
+
+    } else
+        eratho_print();
 
     struct ppm *msg;
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 
     eratosthenes(p);
 
-    char decoded_char[2] = {0};
+    char decoded_char[2] = {8, 0};
     unsigned char_index = 0;
 
     // CHYBA

@@ -20,6 +20,8 @@ typedef unsigned long bitset_index_t;
 
 void eratosthenes(bitset_t array);
 
+void eratho_print(void);
+
 #define N 200000000
 
 #define CHAR_BITS 8

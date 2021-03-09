@@ -5,8 +5,8 @@
 // Hledání prvočísel pomocí Eratosthenova síta
 
 #include <stdio.h>
-#include "../headers/bitset.h"
-#include "../headers/error.h"
+#include "bitset.h"
+#include "error.h"
 #include <math.h>
 
 #ifdef USE_INLINE
@@ -15,7 +15,6 @@
     extern inline void bitset_free(bitset_t arr_name);
     extern inline bitset_index_t bitset_size(bitset_t arr_name);
 #endif
-#define k (360*135*3)
 
 void eratosthenes(bitset_t array)
 {
@@ -27,15 +26,15 @@ void eratosthenes(bitset_t array)
     {
         if (bitset_getbit(array, i))
             continue;
-        for (bitset_index_t j = 2*i; j < sqrt(size); j += i)
+        for (bitset_index_t j = 2*i; j < size; j += i)
             bitset_setbit(array,j,1);
     }
 }
-/*
-int main(void) {
+
+void eratho_print(void) {
     bitset_alloc(p, N);
 
-    eratosthenes(p, N);
+    eratosthenes(p);
 
     bitset_index_t results[10];
 
@@ -54,6 +53,4 @@ int main(void) {
     }
 
     bitset_free(p);
-
-    return 0;
-}*/
+}
