@@ -1,6 +1,7 @@
-#CFLAGS  = -g -std=c11 -Wextra -Wall -pedantic -O2
-CFLAGS = -g -std=c11 -Wextra -Wall -pedantic -O2 -DUSE_INLINE
+CFLAGS  = -g -std=c11 -Wextra -Wall -pedantic -O2
+#CFLAGS = -g -std=c11 -Wextra -Wall -pedantic -O2 -DUSE_INLINE
 #CFLAGS = -m32 -std=c11 -Wextra -Wall -pedantic -O2
+#LDFLAGS = -m32
 LDFLAGS = -g
 LDLIBS  = -lm # pokud potřebujeme matematickou knihovnu libm
 CC = gcc
