@@ -57,7 +57,19 @@ int main(int argc, char **argv)
         ppm_free(msg);
         bitset_free(p);
     } else
-        eratho_print();
+    {
+        //eratho_print();
+
+        char decoded_char[2] = {8, 0};
+
+        bitset_getbit(decoded_char, 0);
+
+        printf("%c", decoded_char[1]);
+
+        bitset_setbit(decoded_char, 0, 1);
+
+        printf("%c", decoded_char[1]);
+    }
 
 
     return 0;
