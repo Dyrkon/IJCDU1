@@ -16,6 +16,7 @@
 
 int main(int argc, char **argv)
 {
+    // decider between primes and decode
     if (argc == 2)
     {
         struct ppm *msg;
@@ -57,5 +58,7 @@ int main(int argc, char **argv)
         bitset_free(p);
     } else
         eratho_print();
+
+
     return 0;
 }
