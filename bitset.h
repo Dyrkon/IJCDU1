@@ -36,7 +36,8 @@ void eratho_print(void);
     { error_exit("bitset_alloc: Chyba alokace pameti"); } \
     else { arr_name[0] = size; };
 
-#ifndef USE_INLINE
+// Just for testing
+//#define USE_INLINE
 
 #define INDEX_CHECK(arr_name, index) ((unsigned long)index <= arr_name[0] /*&& index >= 0*/)
 
@@ -46,10 +47,11 @@ void eratho_print(void);
 
 #define GET_BIT(arr_name, index) (((arr_name[index/SIZE_OF(arr_name)+1]) & (1UL << index%SIZE_OF(arr_name))) != 0)
 
+#ifndef USE_INLINE
 
 #define bitset_create(arr_name, size) \
     bitset_index_t arr_name[sizeofset(size)] = { size, 0 }; \
-    _Static_assert(size > 0, "Neuspesna inicializace pole");
+    static_assert(size > 0, "Neuspesna inicializace pole");
 
 
 #define bitset_free(arr_name) free(arr_name);
@@ -64,27 +66,20 @@ void eratho_print(void);
 
 #ifdef USE_INLINE
 
-    inline void bitset_setbit(bitset_t arr_name, bitset_index_t index, unsigned value)
+    static inline void bitset_setbit(bitset_t arr_name, bitset_index_t index, unsigned value)
     {
-        if ((index) <= arr_name[0] && index > 0)
+        if (value == 0)
         {
-            (value == 0) ? ((arr_name[index/sizeof(bitset_index_t)+1]) &= (~(1UL << index%sizeof(bitset_index_t)))) : ((arr_name[index/sizeof(bitset_index_t)+1]) |= (1UL << index%sizeof(bitset_index_t)));
+            arr_name[index/SIZE_OF(arr_name)+1] &= (~(1UL << index%SIZE_OF(arr_name)));
         }
-        else {
-            error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu",(bitset_index_t)index, (bitset_index_t)arr_name[0]);
-        }
+        else
+            arr_name[index/SIZE_OF(arr_name)+1] |= (1UL << index%SIZE_OF(arr_name));
     }
 
-    inline bitset_index_t bitset_getbit(bitset_t arr_name, bitset_index_t index)
+
+    static inline bitset_index_t bitset_getbit(bitset_t arr_name, unsigned index)
     {
-        if ((index) <= arr_name[0] && index > 0)
-        {
-            return (((arr_name[index/sizeof(bitset_index_t)+1]) & (1UL << index%sizeof(bitset_index_t))) != 0);
-        }
-        else {
-            error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu",(bitset_index_t)index, (bitset_index_t)arr_name[0]);
-        }
-        return 0;
+        return (((arr_name[index/SIZE_OF(arr_name)+1]) & (1UL << index%SIZE_OF(arr_name))) != 0);
     }
 
     /*static inline bitset_t bitset_alloc(bitset_t arr_name, bitset_index_t size) {

@@ -11,7 +11,7 @@
 
 #ifdef USE_INLINE
     extern inline void bitset_setbit(bitset_t arr_name, bitset_index_t index, unsigned value);
-    extern inline bitset_index_t bitset_getbit(bitset_t arr_name, bitset_index_t index);
+    extern inline bitset_index_t bitset_getbit(bitset_t arr_name, unsigned index);
     extern inline void bitset_free(bitset_t arr_name);
     extern inline bitset_index_t bitset_size(bitset_t arr_name);
 #endif
