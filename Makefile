@@ -24,8 +24,7 @@ program: primes.o ppm.o error.o steg-decode.o
 # testování výsledku (regresní testy a podobně)
 test: program
 	./program
-	time ./program
-	./program jiné du1-obrazek.ppm
+	./program du1-obrazek.ppm
 
 # úklid
 clean:

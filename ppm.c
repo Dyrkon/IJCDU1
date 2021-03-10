@@ -35,6 +35,9 @@ struct ppm * ppm_read(const char * filename)
         return NULL;
     }
 
+    //get rid of space
+    fgetc(f);
+
     unsigned int limit = x_size*y_size*3;
 
     if (strcmp(file_type, "P6") != 0)
@@ -70,9 +73,8 @@ struct ppm * ppm_read(const char * filename)
         return NULL;
     }
 
-    if (fgetc(f) == EOF)
+    if (fgetc(f) != EOF)
     {
-        printf("posledni %i", fgetc(f));
         warning_msg("CHYBA: Soubor nebyl nacten do konce!\n");
         fclose(f);
         return NULL;

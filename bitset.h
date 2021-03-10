@@ -26,6 +26,8 @@ void eratho_print(void);
 
 #define CHAR_BITS 8
 
+#define SIZE_OF(member) (sizeof(*member)*CHAR_BITS)
+
 #define sizeofset(size) ((size/sizeof(bitset_index_t)) + (size%sizeof(bitset_index_t) == 0 ? 0 : 1) + 1)
 
 #define bitset_alloc(arr_name,size) \
@@ -36,13 +38,13 @@ void eratho_print(void);
 
 #ifndef USE_INLINE
 
-#define INDEX_CHECK(arr_name, index) (index <= arr_name[0] && index > 0)
+#define INDEX_CHECK(arr_name, index) (index <= arr_name[0] && index >= 0)
 
 #define INDEX_ERROR(arr_name, index) (error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu",(bitset_index_t)index, (bitset_index_t)arr_name[0]),0)
 
-#define SET_BIT(arr_name, index, value) (value == 0) ? ((arr_name[index/sizeof(bitset_index_t)+1]) &= (~(1UL << index%sizeof(bitset_index_t)))) : ((arr_name[index/sizeof(bitset_index_t)+1]) |= (1UL << index%sizeof(bitset_index_t)))
+#define SET_BIT(arr_name, index, value) (value == 0) ? ((arr_name[index/SIZE_OF(arr_name)+1]) &= (~(1UL << index%SIZE_OF(arr_name)))) : ((arr_name[index/SIZE_OF(arr_name)+1]) |= (1UL << index%SIZE_OF(arr_name)))
 
-#define GET_BIT(arr_name, index) (((arr_name[index/sizeof(bitset_index_t)+1]) & (1UL << index%sizeof(bitset_index_t))) != 0)
+#define GET_BIT(arr_name, index) (((arr_name[index/SIZE_OF(arr_name)+1]) & (1UL << index%SIZE_OF(arr_name))) != 0)
 
 
 #define bitset_create(arr_name, size) \
