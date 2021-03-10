@@ -14,6 +14,7 @@
 
 int main(int argc, char **argv)
 {
+    // ADD A CLOCK
     // decider between primes and decode
     if (argc == 2)
     {

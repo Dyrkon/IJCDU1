@@ -36,9 +36,6 @@ void eratho_print(void);
     { error_exit("bitset_alloc: Chyba alokace pameti"); } \
     else { arr_name[0] = size; };
 
-// Just for testing
-//#define USE_INLINE
-
 #define INDEX_CHECK(arr_name, index) ((unsigned long)index <= arr_name[0] /*&& index >= 0*/)
 
 #define INDEX_ERROR(arr_name, index) (error_exit("bitset_getbit: Index %lu mimo rozsah 0..%lu",(bitset_index_t)index, (bitset_index_t)arr_name[0]),0)
