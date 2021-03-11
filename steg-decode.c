@@ -2,7 +2,7 @@
 // Řešení IJC-DU1, příklad a), 3.3.2021
 // Autor: Matěj Mudra, FIT
 // Přeloženo: gcc 10.2.0
-// ...popis příkladu - poznámky, omezení, atd
+// Soubor pro spouštění dekodování a Eratosthenova síta
 
 #include "error.h"
 #include "ppm.h"
@@ -10,11 +10,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+#include <time.h>
 
 int main(int argc, char **argv)
 {
-    // ADD A CLOCK
     // decider between primes and decode
     if (argc == 2)
     {
@@ -54,8 +53,9 @@ int main(int argc, char **argv)
         bitset_free(p);
     } else
     {
+        clock_t start_t = clock();
         eratho_print();
+        fprintf(stderr, "Time=%.3g\n", (double)(clock()-start_t)/CLOCKS_PER_SEC);
     }
-
     return 0;
 }

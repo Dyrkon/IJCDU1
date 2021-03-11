@@ -1,6 +1,8 @@
-//
-// Created by dyrkon on 06.03.21.
-//
+// error.h
+// Řešení IJC-DU1, příklad a), 3.3.2021
+// Autor: Matěj Mudra, FIT
+// Přeloženo: gcc 10.2.0
+// Hlavičkový soubor s metodamy pro hlášení chyb
 
 #ifndef IJCPROJ1_ERROR_H
 #define IJCPROJ1_ERROR_H

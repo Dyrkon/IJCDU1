@@ -2,7 +2,7 @@
 // Řešení IJC-DU1, příklad a), 3.3.2021
 // Autor: Matěj Mudra, FIT
 // Přeloženo: gcc 10.2.0
-// ...popis příkladu - poznámky, omezení, atd
+// Soubor s metodamy pro hlášení chyb
 
 #include <stdio.h>
 #include <stdlib.h>
